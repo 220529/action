@@ -29,6 +29,7 @@ jobs:
         run: |
           ls -a
           echo ${{github.ref_name}}
+          echo ${{github.sha}}
 
       - name: 创建.env文件
         run: |
