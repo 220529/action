@@ -33,8 +33,8 @@ jobs:
       - name: 创建.env文件
         run: |
           touch .env
-          echo MONGO_INITDB_ROOT_USERNAME=${{MONGO_INITDB_ROOT_USERNAME}} >> .env
-          echo MONGO_INITDB_ROOT_PASSWORD=${{MONGO_INITDB_ROOT_PASSWORD}} >> .env
+          echo MONGO_INITDB_ROOT_USERNAME=${{secrets.MONGO_INITDB_ROOT_USERNAME}} >> .env
+          echo MONGO_INITDB_ROOT_PASSWORD=${{secrets.MONGO_INITDB_ROOT_PASSWORD}} >> .env
 
       - name: 创建配置文件夹
         run: |
