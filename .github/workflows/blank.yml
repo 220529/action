@@ -28,10 +28,10 @@ jobs:
       - name: 查看仓库信息
         run: |
           ls -a
-          echo ${{github}}
+          echo ${{github.ref_name}}
       - name: 查看secrets
         run: |
-          echo ${{secrets}}
+          echo ${{secrets.SSH_HOST}}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
