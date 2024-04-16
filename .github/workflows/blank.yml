@@ -30,6 +30,27 @@ jobs:
           ls -a
           echo ${{github.ref_name}}
 
+      - name: 创建.env文件
+        run: |
+          touch .env
+          echo MONGO_INITDB_ROOT_USERNAME=${{MONGO_INITDB_ROOT_USERNAME}} >> .env
+          echo MONGO_INITDB_ROOT_PASSWORD=${{MONGO_INITDB_ROOT_PASSWORD}} >> .env
+
+      - name: 创建配置文件夹
+        run: |
+          mkdir lego-backend
+          ls -a
+          cp .env lego-backend
+
+      - name: 将配置文件夹copy到ssh
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PWD }}
+          source: "lego-backend"
+          target: "/app"
+
       - name: 查看secrets
         run: echo ${{secrets.SSH_HOST}}
 
